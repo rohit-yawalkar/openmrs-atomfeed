@@ -1,7 +1,8 @@
 package org.openmrs.module.atomfeed;
 
 import groovy.lang.GroovyClassLoader;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openmrs.module.atomfeed.advice.EncounterSaveAdvice;
 import org.openmrs.module.atomfeed.filter.DefaultEventPublishFilter;
 import org.openmrs.module.atomfeed.filter.EventPublishFilter;
@@ -14,7 +15,7 @@ import java.util.Map;
 
 public class EventPublishFilterHook {
 
-    private static final Logger log = Logger.getLogger(EncounterSaveAdvice.class);
+    private static final Logger log = LogManager.getLogger(EncounterSaveAdvice.class);
     private static GroovyClassLoader groovyClassLoader = new GroovyClassLoader();
     private static Map<String, EventPublishFilter> eventPublishFilterMap = new HashMap<String, EventPublishFilter>();
 
@@ -42,11 +43,11 @@ public class EventPublishFilterHook {
                 Class clazz = groovyClassLoader.parseClass(eventPublisherFilterFile);
                 eventPublishFilter = (EventPublishFilter) clazz.newInstance();
             } catch (IOException e) {
-                log.error("Problem with the groovy class " + eventPublisherFilterFile, e);
+                log.error("Problem with the groovy class {}", eventPublisherFilterFile, e);
             } catch (InstantiationException e) {
-                log.error("The groovy class " + eventPublisherFilterFile + " cannot be instantiated", e);
+                log.error("The groovy class {} cannot be instantiated {}", eventPublisherFilterFile, e);
             } catch (IllegalAccessException e) {
-                log.error("Problem with the groovy class " + eventPublisherFilterFile, e);
+                log.error("Problem with the groovy class {}", eventPublisherFilterFile, e);
             }
         }
         return eventPublishFilter;
