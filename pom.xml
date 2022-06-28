@@ -50,6 +50,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <atomfeed.version>1.10.1</atomfeed.version>
 		<log4j.version>2.17.1</log4j.version>
+		<legacyUI.version>1.8.4</legacyUI.version>
 	</properties>
 
 	<dependencyManagement>
@@ -79,7 +80,7 @@
 			<dependency>
 				<groupId>org.openmrs.module</groupId>
 				<artifactId>legacyui-omod</artifactId>
-				<version>1.3.3</version>
+				<version>${legacyUI.version}</version>
 				<type>jar</type>
 				<scope>provided</scope>
 			</dependency>
